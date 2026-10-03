@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TÊN QUÁN</title>
+<meta name="description" content="Câu chuyện về TÊN QUÁN.">
+<style>
+  :root{--ink:#1d2b24;--bg:#efe9dc;--card:#faf6ec;--green:#1f3a2e;--amber:#e0a526;--line:#d8d0bd;--muted:#5b675f}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font:17px/1.7 Georgia,"Times New Roman",serif;color:var(--ink);background:var(--bg) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .32 0 0 0 0 .27 0 0 0 0 .18 0 0 0 .32 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px}
+  .ui{font-family:system-ui,sans-serif}
+
+  /* hero */
+  header{position:relative;overflow:hidden;background:var(--green);color:#fff;min-height:88vh;display:flex;flex-direction:column}
+  header video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  header .shade{position:absolute;inset:0;background:rgba(15,30,22,.55)}
+  nav{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px}
+  nav b{font-size:1.1rem}
+  nav .links{display:flex;gap:16px;font:.95rem system-ui,sans-serif;overflow-x:auto}
+  nav a{color:#fff;text-decoration:none;white-space:nowrap}
+  .hero{position:relative;margin:auto 0;padding:40px 0 70px}
+  h1{font-size:clamp(2.4rem,9vw,4rem);line-height:1.1;margin:0 0 14px}
+  .hero p{margin:0;font-size:1.2rem;max-width:32ch;opacity:.92}
+
+  .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+  .btn{display:inline-block;padding:13px 22px;border-radius:8px;font:600 1rem system-ui,sans-serif;text-decoration:none}
+  .wa{background:#25d366;color:#0b2a17}
+  .map{background:var(--amber);color:#2b1f00}
+  a:focus-visible,summary:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+
+  /* sections */
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  h2{font-size:1.7rem;line-height:1.25;margin:0 0 18px}
+  .lead{font-size:1.25rem}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:22px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px}
+  .tile h3{margin:0 0 4px;font-size:1.05rem}
+  .tile p{margin:0;font-size:.95rem;color:var(--muted)}
+  .photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:20px}
+  .photo{aspect-ratio:4/5;border-radius:6px;background:#cfc6b0 center/cover no-repeat}
+  blockquote{margin:0 0 18px;padding:16px 18px;background:var(--card);border-left:4px solid var(--amber);border-radius:0 8px 8px 0}
+  blockquote p{margin:0 0 6px}
+  cite{font:.9rem system-ui,sans-serif;color:var(--muted);font-style:normal}
+  details{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin-bottom:10px}
+  summary{cursor:pointer;font:600 1rem system-ui,sans-serif}
+  details p{margin:10px 0 0}
+  form{display:grid;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  label{display:grid;gap:4px;font:600 .9rem system-ui,sans-serif}
+  input,select,textarea{font:1rem system-ui,sans-serif;padding:11px 12px;border:1px solid #b9b19b;border-radius:6px;background:#fff;color:var(--ink);width:100%}
+  input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+  button.btn{border:0;cursor:pointer;background:var(--green);color:#fff}
+  button.btn:disabled{opacity:.6;cursor:wait}
+  #msg{margin:0;font:.95rem system-ui,sans-serif}
+  .hp{position:absolute;left:-9999px}
+  @media (max-width:480px){.row{grid-template-columns:1fr}}
+  .near{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:8px;font:1rem system-ui,sans-serif}
+  .near li{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+  .near b{color:var(--green)}
+  .mapimg{margin:0 0 22px}
+  .mapimg a{display:block;position:relative;min-height:220px;background:#cfc6b0;border-radius:8px;overflow:hidden}
+  .mapimg a::before{content:"Map image: map.jpg";position:absolute;inset:0;display:grid;place-items:center;font:.95rem system-ui,sans-serif;color:var(--muted)}
+  .mapimg img{position:relative;display:block;width:100%;height:auto}
+  .mapimg figcaption{margin-top:8px;font:.9rem system-ui,sans-serif;color:var(--muted)}
+  #top{position:fixed;right:16px;bottom:16px;width:46px;height:46px;border-radius:50%;background:var(--green);color:#fff;border:2px solid #fff;font:700 1.3rem/1 system-ui,sans-serif;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
+  #top.show{opacity:1;pointer-events:auto}
+  #top:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+  footer{background:var(--green);color:#e7ece6;padding:40px 0;font:.95rem/1.7 system-ui,sans-serif}
+  footer a{color:#fff}
+  @media (prefers-reduced-motion:reduce){header video{display:none} html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+    <source src="header.mp4" type="video/mp4">
+  </video>
+  <div class="shade"></div>
+  <nav>
+    <b>TÊN QUÁN</b>
+    <div class="links">
+      <a href="#story">Our story</a>
+      <a href="#experience">Experience</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#book">Book</a>
+      <a href="#visit">Visit</a>
+    </div>
+  </nav>
+  <div class="wrap hero">
+    <h1>Welcome to TÊN QUÁN</h1>
+    <p>Một câu ngắn nói lên cảm giác khi ngồi ở quán.</p>
+    <div class="btns">
+      <a class="btn wa" href="https://wa.me/84XXXXXXXXX">Chat on WhatsApp</a>
+      <a class="btn map" href="https://maps.app.goo.gl/XXXXXXXX">Open in Google Maps</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="story">
+    <h2>About us</h2>
+    <p class="lead">Một đoạn mở đầu, 2-3 câu: quán ở đâu, xung quanh có gì, khách đến để làm gì.</p>
+    <p>Đoạn kể chuyện: vì sao anh mở quán, ai tự tay làm/chọn từng thứ trong quán, điều gì khiến nơi này khác chỗ khác. Viết như đang kể cho khách ngồi bàn.</p>
+    <div class="photos">
+      <div class="photo" style="background-image:url(photo1.jpg)" role="img" aria-label="Ảnh quán 1"></div>
+      <div class="photo" style="background-image:url(photo2.jpg)" role="img" aria-label="Ảnh quán 2"></div>
+      <div class="photo" style="background-image:url(photo3.jpg)" role="img" aria-label="Ảnh quán 3"></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>What you can enjoy here</h2>
+    <p>Một câu dẫn: khách đến quán sẽ được trải nghiệm gì.</p>
+    <div class="grid">
+      <div class="tile"><h3>Food and drinks</h3><p>Món đặc trưng của quán.</p></div>
+      <div class="tile"><h3>Countryside views</h3><p>Không gian, cảnh xung quanh.</p></div>
+      <div class="tile"><h3>Gatherings</h3><p>Nhóm bạn, gia đình, tiệc nhỏ.</p></div>
+      <div class="tile"><h3>Local stories</h3><p>Chuyện địa phương anh kể được.</p></div>
+    </div>
+  </section>
+
+  <section id="reviews">
+    <h2>What people say</h2>
+    <blockquote>
+      <p>“Dán nguyên văn review của khách vào đây.”</p>
+      <cite>Tên khách, Google Maps</cite>
+    </blockquote>
+    <blockquote>
+      <p>“Review thứ hai.”</p>
+      <cite>Tên khách, TripAdvisor</cite>
+    </blockquote>
+    <blockquote>
+      <p>“Review thứ ba.”</p>
+      <cite>Tên khách, Facebook</cite>
+    </blockquote>
+  </section>
+
+  <section id="book">
+    <h2>Book a table</h2>
+    <p>Gửi thông tin, quán sẽ nhắn lại qua WhatsApp để xác nhận.</p>
+    <form id="bookForm">
+      <label>Name<input name="name" required autocomplete="name"></label>
+      <label>WhatsApp / phone<input name="phone" type="tel" required autocomplete="tel"></label>
+      <div class="row">
+        <label>Date<input name="date" type="date" required></label>
+        <label>Time<input name="time" type="time" required></label>
+      </div>
+      <label>Guests<input name="guests" type="number" min="1" max="100" value="2" required></label>
+      <label>Note (optional)<textarea name="note" rows="3"></textarea></label>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn" type="submit">Send booking request</button>
+      <p id="msg" role="status"></p>
+    </form>
+  </section>
+
+  <section id="visit">
+    <h2>Before you visit</h2>
+    <ul class="near">
+      <li><b>100 m</b> from the roundabout</li>
+      <li><b>1.8 km</b> to Tam Cốc boat dock</li>
+    </ul>
+    <figure class="mapimg">
+      <a href="map.jpg" target="_blank" rel="noopener">
+        <img src="map.jpg" alt="Map showing the way in from the roundabout and up from Tam Cốc boat dock" onerror="this.remove()">
+      </a>
+      <figcaption>How to find us: from the roundabout, and from Tam Cốc boat dock. Tap the image to enlarge.</figcaption>
+    </figure>
+    <details>
+      <summary>Opening hours</summary>
+      <p>10:00 – 22:00, mở hàng ngày.</p>
+    </details>
+    <details>
+      <summary>How to get here</summary>
+      <p>Cách vòng xuyến 100 m, cách bến đò Tam Cốc 1.8 km. Thêm: có chỗ đỗ xe không, gọi xe thế nào.</p>
+    </details>
+    <details>
+      <summary>Do I need to book?</summary>
+      <p>Nhóm lớn nên nhắn WhatsApp trước, khách lẻ cứ đến.</p>
+    </details>
+    <div class="btns">
+      <a class="btn wa" href="https://wa.me/84XXXXXXXXX">Message us</a>
+      <a class="btn map" href="https://maps.app.goo.gl/XXXXXXXX">Get directions</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>TÊN QUÁN</b><br>
+    Địa chỉ đầy đủ của quán.<br>
+    WhatsApp: <a href="https://wa.me/84XXXXXXXXX">+84 XXX XXX XXX</a><br>
+    <a href="https://www.facebook.com/XXXX">Facebook</a>
+  </div>
+</footer>
+
+<button id="top" type="button" aria-label="Back to top">↑</button>
+<script>
+  // Dán link Web app của Google Apps Script vào đây
+  const SCRIPT_URL = "https://script.google.com/macros/s/XXXXXXXX/exec";
+  const topBtn = document.getElementById("top");
+  addEventListener("scroll", () => topBtn.classList.toggle("show", scrollY > 500), {passive:true});
+  topBtn.addEventListener("click", () => scrollTo({top:0, behavior:"smooth"}));
+  const form = document.getElementById("bookForm"), msg = document.getElementById("msg");
+  form.date.min = new Date().toISOString().slice(0,10);
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const btn = form.querySelector("button");
+    btn.disabled = true; msg.textContent = "Sending...";
+    try {
+      await fetch(SCRIPT_URL, {method:"POST", mode:"no-cors", body:new URLSearchParams(new FormData(form))});
+      msg.textContent = "Thank you! We got your request and will message you on WhatsApp soon.";
+      form.reset(); form.guests.value = 2;
+    } catch (err) {
+      msg.textContent = "Could not send. Please message us on WhatsApp instead.";
+    }
+    btn.disabled = false;
+  });
+</script>
+</body>
+</html>
